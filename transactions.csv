@@ -1,0 +1,16 @@
+amount,transaction_type,account_age,is_fraud
+1000.00,Type1,10,0
+1500.50,Type2,15,1
+200.75,Type1,5,0
+300.60,Type2,8,0
+450.90,Type1,12,1
+1200.20,Type2,20,0
+3000.00,Type1,25,1
+500.00,Type2,3,0
+800.30,Type1,7,1
+50.00,Type2,2,0
+600.45,Type1,6,0
+2500.10,Type2,10,1
+700.00,Type1,4,0
+950.55,Type2,18,0
+1100.40,Type1,9,1
