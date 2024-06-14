@@ -4,6 +4,7 @@ from sklearn.ensemble import IsolationForest
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import joblib
+import io
 
 @st.cache
 def load_data():
@@ -50,12 +51,21 @@ def predict_fraud(model, scaler, input_data, feature_columns):
 # Streamlit UI
 st.title("Real-Time Fraud Detection System")
 
-# Load data and train model if not already trained
-data = load_data()
+# Dataset upload section
+st.sidebar.header("Upload Your Dataset")
+uploaded_file = st.sidebar.file_uploader("Upload CSV", type=["csv"])
 
-if st.button('Train Model'):
+# Load data
+if uploaded_file is not None:
+    data = pd.read_csv(uploaded_file)
+    st.sidebar.success("Dataset uploaded successfully!")
+else:
+    data = load_data()
+    st.sidebar.info("Using default dataset")
+
+if st.sidebar.button('Train Model'):
     model, scaler = train_model(data)
-    st.write("Model trained and saved successfully!")
+    st.sidebar.success("Model trained and saved successfully!")
 
 # Load trained model
 model, scaler, feature_columns = joblib.load('fraud_model.pkl')
